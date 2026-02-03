@@ -1,5 +1,7 @@
+import { Header } from '@/widgets/ui/Header';
 import { QueryProvider } from './QueryProvider';
 import { RouterProvider } from './RouterProvider';
+import { ThemeProvider } from './ThemeProvider';
 
 interface ProvidersProps {
   children?: React.ReactNode;
@@ -7,6 +9,15 @@ interface ProvidersProps {
 
 export const Providers = ({ children }: ProvidersProps) => (
   <QueryProvider>
-    <RouterProvider>{children}</RouterProvider>
+    <ThemeProvider
+      defaultTheme="light"
+      storageKey="vite-ui-theme"
+    >
+      <Header />
+      
+      <RouterProvider>
+        <main className="flex-1">{children}</main>
+      </RouterProvider>
+    </ThemeProvider>
   </QueryProvider>
 );
