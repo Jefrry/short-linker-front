@@ -8,9 +8,11 @@ interface RouterProviderProps {
 
 export const RouterProvider = ({ children }: RouterProviderProps) => (
   <BrowserRouter>
-    <Routes>
-      <Route element={<HomePage />} path="/" />
-    </Routes>
+    <main className="flex-1">
+      <Routes>
+        <Route element={<HomePage />} path="/" />
+      </Routes>
+    </main>
 
     {children}
   </BrowserRouter>

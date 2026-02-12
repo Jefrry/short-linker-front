@@ -16,7 +16,7 @@ export const Providers = ({ children }: ProvidersProps) => (
       <Header />
       
       <RouterProvider>
-        <main className="flex-1">{children}</main>
+        {children}
       </RouterProvider>
     </ThemeProvider>
   </QueryProvider>
