@@ -1,4 +1,4 @@
-import { baseApi } from "@/shared";
+import { baseApi, Link } from "@/shared";
 import { User } from "../model/types";
 
 export const userApi = {
@@ -26,6 +26,12 @@ export const userApi = {
     return await baseApi({
       path: 'user/signout',
       method: 'POST',
+    });
+  },
+  getUserLinks: async (): Promise<Link[]> => {
+    return await baseApi({
+      path: 'user/urls',
+      method: 'GET',
     });
   },
 };

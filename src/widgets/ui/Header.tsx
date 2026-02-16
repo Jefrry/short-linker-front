@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { useTheme } from "@/app/providers/ThemeProvider";
 import { Button } from "@/shared";
 import { MoonIcon, SunIcon } from "lucide-react";
@@ -29,9 +30,9 @@ export const Header = () => {
   return (
     <header className="bg-card sticky top-0 z-50 border-b">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6">
-        <div className="flex items-center gap-4">
+        <Link to="/" draggable={false} className="flex items-center gap-4">
             <img src="/logo.svg" alt="Short Linker" className="size-10" draggable={false} />
-        </div>
+        </Link>
 
         <div className="flex items-center gap-1.5">
             {isLoading ? (
@@ -82,6 +83,12 @@ function UserInfo({ user }: { user: User }) {
   return (
     <div className="flex items-center gap-4 mr-2">
       <span className="text-sm font-medium">Hello, {user.name}</span>
+
+      <Link to="/dashboard">
+        <Button variant="ghost" size="sm" className="cursor-pointer">
+          Dashboard
+        </Button>
+      </Link>
 
       <Button variant="outline" size="sm" onClick={() => signout.mutate()} className="cursor-pointer">
         Sign Out

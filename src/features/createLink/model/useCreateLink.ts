@@ -15,7 +15,7 @@ export const useCreateLink = () => {
       }
 
       const response = await linkApi.createLink(url);
-      return response.result;
+      return response;
     },
   });
 };

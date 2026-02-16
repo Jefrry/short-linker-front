@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { useCreateLink } from '@/features/createLink';
 import { LinkHistoryItem } from '@/entities/link/ui';
-import { LinkHistory } from '@/entities/link';
 import { Button, Input } from '@/shared/ui';
 import { useNotificationStore } from '@/entities/notification';
+import { Link } from '@/shared';
 
-export const LinkManager = () => {
+interface LinkManagerProps {
+  showHistory?: boolean;
+  onLinkCreated?: () => void;
+}
+
+export const LinkManager = ({ showHistory = true, onLinkCreated }: LinkManagerProps) => {
   const [url, setUrl] = useState('');
-  const [history, setHistory] = useState<Partial<LinkHistory>[]>([]);
+  const [history, setHistory] = useState<Link[]>([]);
   const { mutate, isPending } = useCreateLink();
   const addNotification = useNotificationStore((state) => state.addNotification);
 
@@ -22,14 +27,15 @@ export const LinkManager = () => {
     }
 
     mutate(url, {
-      onSuccess: (shortLink) => {
-        setHistory((prev) => [{ originalUrl: url, shortUrl: shortLink }, ...prev]);
+      onSuccess: (link) => {
+        setHistory((prev) => [link, ...prev]);
         setUrl('');
         addNotification({
           type: 'success',
           title: 'Link shortened!',
           description: 'Your short link is ready to use',
         });
+        onLinkCreated?.();
       },
       onError: (error) => {
         addNotification({
@@ -42,7 +48,7 @@ export const LinkManager = () => {
   };
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-6">
+    <div className="flex w-full flex-col gap-6">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -57,19 +63,19 @@ export const LinkManager = () => {
           disabled={isPending}
         />
 
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} className='cursor-pointer'>
           {isPending ? 'Shortening...' : 'Shorten'}
         </Button>
       </form>
 
-      {history.length > 0 && (
+      {showHistory && history.length > 0 && (
         <div className="flex flex-col gap-4">
           <h2 className="text-lg font-semibold text-left">Your Recent Links:</h2>
 
           <div className="flex flex-col gap-3">
-            {history.map((item, index) => (
+            {history.map((item) => (
               <LinkHistoryItem
-                key={`${item.shortUrl}-${index}`}
+                key={item.id}
                 data={item}
               />
             ))}

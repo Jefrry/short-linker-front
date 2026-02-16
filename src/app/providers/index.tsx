@@ -14,12 +14,12 @@ export const Providers = ({ children }: ProvidersProps) => (
       defaultTheme="light"
       storageKey="vite-ui-theme"
     >
-      <Header />
-      
       <RouterProvider>
+        <Header />
+        
         {children}
       </RouterProvider>
-      
+
       <NotificationContainer />
     </ThemeProvider>
   </QueryProvider>
