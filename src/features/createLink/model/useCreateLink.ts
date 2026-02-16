@@ -1,8 +1,9 @@
-import { linkApi } from '@/entities/link';
 import { useMutation } from '@tanstack/react-query';
 
-export const useCreateLink = () => {
-  return useMutation({
+import { linkApi } from '@/entities/link';
+
+export const useCreateLink = () =>
+  useMutation({
     mutationFn: async (url: string) => {
       if (!url) {
         throw new Error('URL is required');
@@ -18,4 +19,3 @@ export const useCreateLink = () => {
       return response;
     },
   });
-};

@@ -1,15 +1,17 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { userApi } from '../api';
+
 // Small antipatern, because one entity should not know about another
 // but it is a small project and it is not a problem
 import { useNotificationStore } from '@/entities/notification';
+
+import { userApi } from '../api';
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
   const addNotification = useNotificationStore((state) => state.addNotification);
 
   const signinMutation = useMutation({
-    mutationFn: ([email, password]: Parameters<typeof userApi.signin>) => 
+    mutationFn: ([email, password]: Parameters<typeof userApi.signin>) =>
       userApi.signin(email, password),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
@@ -29,7 +31,7 @@ export const useAuth = () => {
   });
 
   const signupMutation = useMutation({
-    mutationFn: ([email, password, name]: Parameters<typeof userApi.signup>) => 
+    mutationFn: ([email, password, name]: Parameters<typeof userApi.signup>) =>
       userApi.signup(email, password, name),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['user'] });

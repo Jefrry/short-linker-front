@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+
+import { useAuth } from '@/entities/user';
+
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
-import { useAuth } from '@/entities/user';
 
 const signinSchema = z.object({
   email: z.email('Invalid email format'),
@@ -38,18 +41,18 @@ export const SigninForm = ({ onSuccess }: SigninFormProps) => {
 
   const onSubmit = async (data: SigninFormValues) => {
     await signin.mutateAsync([data.email, data.password]);
-      onSuccess?.();
+    onSuccess?.();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-4">
+    <form className="space-y-4 py-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-2">
         <Label htmlFor="signin-email">Email</Label>
 
         <Input
           id="signin-email"
-          type="email"
           placeholder="mail@example.com"
+          type="email"
           {...register('email')}
           aria-invalid={!!errors.email}
         />
@@ -64,8 +67,8 @@ export const SigninForm = ({ onSuccess }: SigninFormProps) => {
 
         <Input
           id="signin-password"
+          placeholder="Your password"
           type="password"
-          placeholder='Your password'
           {...register('password')}
           aria-invalid={!!errors.password}
         />
@@ -75,7 +78,7 @@ export const SigninForm = ({ onSuccess }: SigninFormProps) => {
         )}
       </div>
 
-      <Button type="submit" className="w-full cursor-pointer" disabled={signin.isPending}>
+      <Button className="w-full cursor-pointer" disabled={signin.isPending} type="submit">
         {signin.isPending ? 'Signing in...' : 'Sign In'}
       </Button>
     </form>

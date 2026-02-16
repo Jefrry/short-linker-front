@@ -1,9 +1,12 @@
 import { useState } from 'react';
+
 import { useCreateLink } from '@/features/createLink';
+
 import { LinkHistoryItem } from '@/entities/link/ui';
-import { Button, Input } from '@/shared/ui';
 import { useNotificationStore } from '@/entities/notification';
+
 import { Link } from '@/shared';
+import { Button, Input } from '@/shared/ui';
 
 interface LinkManagerProps {
   showHistory?: boolean;
@@ -50,20 +53,20 @@ export const LinkManager = ({ showHistory = true, onLinkCreated }: LinkManagerPr
   return (
     <div className="flex w-full flex-col gap-6">
       <form
+        className="flex gap-2"
         onSubmit={(e) => {
           e.preventDefault();
           handleCreate();
         }}
-        className="flex gap-2"
       >
         <Input
+          disabled={isPending}
           placeholder="Enter your long URL here..."
           value={url}
           onChange={(e) => setUrl(e.target.value.trim())}
-          disabled={isPending}
         />
 
-        <Button type="submit" disabled={isPending} className='cursor-pointer'>
+        <Button className="cursor-pointer" disabled={isPending} type="submit">
           {isPending ? 'Shortening...' : 'Shorten'}
         </Button>
       </form>
@@ -74,10 +77,7 @@ export const LinkManager = ({ showHistory = true, onLinkCreated }: LinkManagerPr
 
           <div className="flex flex-col gap-3">
             {history.map((item) => (
-              <LinkHistoryItem
-                key={item.id}
-                data={item}
-              />
+              <LinkHistoryItem data={item} key={item.id} />
             ))}
           </div>
         </div>

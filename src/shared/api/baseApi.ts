@@ -1,4 +1,4 @@
-import { fetchApi } from "./fetchApi";
+import { fetchApi } from './fetchApi';
 
 export type BaseApiProps = {
   path: string;

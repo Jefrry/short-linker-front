@@ -1,4 +1,5 @@
 import { useUserLinks } from '@/entities/user';
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 
 export const LinksTable = () => {
@@ -19,7 +20,9 @@ export const LinksTable = () => {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Id</TableHead>
+
               <TableHead>Link</TableHead>
+
               <TableHead className="text-right">Status</TableHead>
             </TableRow>
           </TableHeader>
@@ -32,19 +35,19 @@ export const LinksTable = () => {
 
                   <TableCell className="max-w-md truncate flex flex-col">
                     <a
-                      href={original_url}
-                      target="_blank"
-                      rel="noreferrer"
                       className="text-[10px] font-bold text-muted-foreground hover:underline truncate"
+                      href={original_url}
+                      rel="noreferrer"
+                      target="_blank"
                     >
                       {original_url}
                     </a>
 
                     <a
-                      href={short_url}
-                      target="_blank"
-                      rel="noreferrer"
                       className="truncate text-sm mt-1 font-medium text-primary hover:underline"
+                      href={short_url}
+                      rel="noreferrer"
+                      target="_blank"
                     >
                       {short_url}
                     </a>
@@ -63,7 +66,7 @@ export const LinksTable = () => {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={3} className="h-24 text-center">
+                <TableCell className="h-24 text-center" colSpan={3}>
                   No links found.
                 </TableCell>
               </TableRow>

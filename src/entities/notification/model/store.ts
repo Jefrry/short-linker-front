@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { NotificationStore } from './types';
 
 const DEFAULT_DURATION = 3000;
@@ -8,7 +9,7 @@ export const useNotificationStore = create<NotificationStore>((set) => ({
   addNotification: (notification) => {
     const id = Date.now().toString();
     const newNotification = { ...notification, id };
-    
+
     set((state) => ({
       notifications: [...state.notifications, newNotification],
     }));

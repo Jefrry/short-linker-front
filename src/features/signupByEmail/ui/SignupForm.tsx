@@ -1,10 +1,13 @@
 import { useForm } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+
+import { useAuth } from '@/entities/user';
+
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
-import { useAuth } from '@/entities/user';
 
 const signupSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -48,7 +51,7 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-4">
+    <form className="space-y-4 py-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-2">
         <Label htmlFor="signup-name">Name</Label>
 
@@ -69,8 +72,8 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
 
         <Input
           id="signup-email"
-          type="email"
           placeholder="mail@example.com"
+          type="email"
           {...register('email')}
           aria-invalid={!!errors.email}
         />
@@ -79,13 +82,14 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
           <p className="text-sm font-medium text-destructive">{errors.email.message}</p>
         )}
       </div>
+
       <div className="space-y-2">
         <Label htmlFor="signup-password">Password</Label>
 
         <Input
           id="signup-password"
+          placeholder="Your password"
           type="password"
-          placeholder='Your password'
           {...register('password')}
           aria-invalid={!!errors.password}
         />
@@ -94,8 +98,8 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
           <p className="text-sm font-medium text-destructive">{errors.password.message}</p>
         )}
       </div>
-      
-      <Button type="submit" className="w-full" disabled={signup.isPending}>
+
+      <Button className="w-full" disabled={signup.isPending} type="submit">
         {signup.isPending ? 'Creating account...' : 'Sign Up'}
       </Button>
     </form>

@@ -61,7 +61,7 @@ export async function fetchApi<T extends Record<string, any>>({
 
   if (response.status !== 204) {
     const contentType = response.headers.get('content-type');
-    
+
     if (contentType && contentType.includes('application/json')) {
       data = await response.json();
     } else {

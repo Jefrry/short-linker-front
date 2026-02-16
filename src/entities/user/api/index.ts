@@ -1,37 +1,33 @@
-import { baseApi, Link } from "@/shared";
-import { User } from "../model/types";
+import { baseApi, Link } from '@/shared';
+
+import { User } from '../model/types';
 
 export const userApi = {
-  getUser: async (): Promise<User> => {
-    return await baseApi({
+  getUser: async (): Promise<User> =>
+    await baseApi({
       path: 'user/profile',
       method: 'GET',
-    });
-  },
-  signin: async (email: string, password: string) => {
-    return await baseApi({
+    }),
+  signin: async (email: string, password: string) =>
+    await baseApi({
       path: 'user/signin',
       method: 'POST',
       body: { email, password },
-    });
-  },
-  signup: async (email: string, password: string, name: string): Promise<User> => {
-    return await baseApi({
+    }),
+  signup: async (email: string, password: string, name: string): Promise<User> =>
+    await baseApi({
       path: 'user/signup',
       method: 'POST',
       body: { email, password, name },
-    });
-  },
-  signout: async () => {
-    return await baseApi({
+    }),
+  signout: async () =>
+    await baseApi({
       path: 'user/signout',
       method: 'POST',
-    });
-  },
-  getUserLinks: async (): Promise<Link[]> => {
-    return await baseApi({
+    }),
+  getUserLinks: async (): Promise<Link[]> =>
+    await baseApi({
       path: 'user/urls',
       method: 'GET',
-    });
-  },
+    }),
 };

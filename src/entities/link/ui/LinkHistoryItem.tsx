@@ -1,31 +1,29 @@
-import { Link } from "@/shared";
+import { Link } from '@/shared';
 
 interface Props {
   data: Link;
 }
 
-export const LinkHistoryItem = ({ data: { original_url, short_url } }: Props) => {
-  return (
-    <div className="flex flex-col gap-2 rounded-lg border bg-card p-4 text-left shadow-sm">
-      <div className="flex flex-col">
-        <a
-          href={original_url}
-          target="_blank"
-          rel="noreferrer"
-          className="text-[10px] font-bold text-muted-foreground hover:underline truncate"
-        >
-          {original_url}
-        </a>
+export const LinkHistoryItem = ({ data: { original_url, short_url } }: Props) => (
+  <div className="flex flex-col gap-2 rounded-lg border bg-card p-4 text-left shadow-sm">
+    <div className="flex flex-col">
+      <a
+        className="text-[10px] font-bold text-muted-foreground hover:underline truncate"
+        href={original_url}
+        rel="noreferrer"
+        target="_blank"
+      >
+        {original_url}
+      </a>
 
-        <a
-          href={short_url}
-          target="_blank"
-          rel="noreferrer"
-          className="truncate text-sm mt-1 font-medium text-primary hover:underline"
-        >
-          {short_url}
-        </a>
-      </div>
+      <a
+        className="truncate text-sm mt-1 font-medium text-primary hover:underline"
+        href={short_url}
+        rel="noreferrer"
+        target="_blank"
+      >
+        {short_url}
+      </a>
     </div>
-  );
-};
+  </div>
+);
