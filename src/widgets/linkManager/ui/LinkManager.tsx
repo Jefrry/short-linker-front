@@ -10,7 +10,7 @@ import { Button, Input } from '@/shared/ui';
 
 interface LinkManagerProps {
   showHistory?: boolean;
-  onLinkCreated?: () => void;
+  onLinkCreated?: (link: Link) => void;
 }
 
 export const LinkManager = ({ showHistory = true, onLinkCreated }: LinkManagerProps) => {
@@ -31,14 +31,17 @@ export const LinkManager = ({ showHistory = true, onLinkCreated }: LinkManagerPr
 
     mutate(url, {
       onSuccess: (link) => {
-        setHistory((prev) => [link, ...prev]);
+        if (showHistory) {
+          setHistory((prev) => [link, ...prev]);
+        }
+
         setUrl('');
         addNotification({
           type: 'success',
           title: 'Link shortened!',
           description: 'Your short link is ready to use',
         });
-        onLinkCreated?.();
+        onLinkCreated?.(link);
       },
       onError: (error) => {
         addNotification({

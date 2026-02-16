@@ -3,13 +3,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import { LinkManager } from '@/widgets/linkManager';
 import { LinksTable } from '@/widgets/linksTable';
 
-import { HEADER_HEIGHT } from '@/shared';
+import { HEADER_HEIGHT, Link } from '@/shared';
 
 export const DashboardPage = () => {
   const queryClient = useQueryClient();
 
-  const handleLinkCreated = () => {
-    queryClient.invalidateQueries({ queryKey: ['user-links'] });
+  const handleLinkCreated = (link: Link) => {
+    queryClient.setQueryData(['user-links'], (old: Link[]) => [link, ...old]);
   };
 
   return (
