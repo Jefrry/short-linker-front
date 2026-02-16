@@ -37,12 +37,8 @@ export const SigninForm = ({ onSuccess }: SigninFormProps) => {
   });
 
   const onSubmit = async (data: SigninFormValues) => {
-    try {
-      await signin.mutateAsync([data.email, data.password]);
+    await signin.mutateAsync([data.email, data.password]);
       onSuccess?.();
-    } catch (error) {
-      console.error('Signin failed:', error);
-    }
   };
 
   return (

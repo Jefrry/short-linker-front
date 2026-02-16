@@ -1,4 +1,5 @@
 import { Header } from '@/widgets/ui/Header';
+import { NotificationContainer } from '@/entities/notification';
 import { QueryProvider } from './QueryProvider';
 import { RouterProvider } from './RouterProvider';
 import { ThemeProvider } from './ThemeProvider';
@@ -18,6 +19,8 @@ export const Providers = ({ children }: ProvidersProps) => (
       <RouterProvider>
         {children}
       </RouterProvider>
+      
+      <NotificationContainer />
     </ThemeProvider>
   </QueryProvider>
 );

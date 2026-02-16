@@ -41,17 +41,31 @@ export async function fetchApi<T extends Record<string, any>>({
   clientInterceptor(response);
 
   if (!response.ok) {
-    const errorResponse = await response.json();
+    const contentType = response.headers.get('content-type');
+    let errorMessage = 'Something went wrong';
 
-    if (errorResponse?.errors) {
-      throw errorResponse.errors;
+    if (contentType && contentType.includes('application/json')) {
+      const errorResponse = await response.json();
+      if (errorResponse?.errors) {
+        throw errorResponse.errors;
+      }
+      errorMessage = errorResponse?.message || errorMessage;
+    } else {
+      errorMessage = await response.text();
     }
+
+    throw new Error(errorMessage);
   }
 
   let data = null;
 
   if (response.status !== 204) {
-    data = await response.json();
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      data = await response.json();
+    } else {
+      data = await response.text();
+    }
   }
 
   return data;

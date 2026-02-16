@@ -3,17 +3,40 @@ import { useCreateLink } from '@/features/createLink';
 import { LinkHistoryItem } from '@/entities/link/ui';
 import { LinkHistory } from '@/entities/link';
 import { Button, Input } from '@/shared/ui';
+import { useNotificationStore } from '@/entities/notification';
 
 export const LinkManager = () => {
   const [url, setUrl] = useState('');
   const [history, setHistory] = useState<Partial<LinkHistory>[]>([]);
-  const { mutate, isPending, error } = useCreateLink();
+  const { mutate, isPending } = useCreateLink();
+  const addNotification = useNotificationStore((state) => state.addNotification);
 
   const handleCreate = () => {
+    if (!url) {
+      addNotification({
+        type: 'warning',
+        title: 'Empty URL',
+        description: 'Please enter a URL to shorten',
+      });
+      return;
+    }
+
     mutate(url, {
       onSuccess: (shortLink) => {
-        setHistory((prev) => [{ originalUrl: url, short: shortLink }, ...prev]);
+        setHistory((prev) => [{ originalUrl: url, shortUrl: shortLink }, ...prev]);
         setUrl('');
+        addNotification({
+          type: 'success',
+          title: 'Link shortened!',
+          description: 'Your short link is ready to use',
+        });
+      },
+      onError: (error) => {
+        addNotification({
+          type: 'error',
+          title: 'Error',
+          description: error instanceof Error ? error.message : 'Failed to shorten link',
+        });
       },
     });
   };
@@ -38,12 +61,6 @@ export const LinkManager = () => {
           {isPending ? 'Shortening...' : 'Shorten'}
         </Button>
       </form>
-
-      {error && (
-        <p className="text-sm text-destructive">
-          {error instanceof Error ? error.message : 'Something went wrong'}
-        </p>
-      )}
 
       {history.length > 0 && (
         <div className="flex flex-col gap-4">
