@@ -4,7 +4,8 @@ import { HEADER_HEIGHT } from '@/shared';
 
 export const HomePage = () => (
   <div
-    className={`flex min-h-[calc(100vh-${HEADER_HEIGHT}px)] flex-col items-center justify-center gap-6 p-4`}
+    className="flex flex-col items-center justify-center gap-6 p-4"
+    style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px)` }}
   >
     <div className="flex flex-col items-center gap-2 text-center">
       <h1 className="text-4xl font-bold">Short Linker</h1>
