@@ -20,7 +20,7 @@ const airbnbConfigs = compat.extends('airbnb', 'airbnb-typescript', 'prettier');
 
 export default tseslint.config(
   {
-    ignores: ['dist/', 'node_modules/', '.eslintrc.cjs'],
+    ignores: ['dist/', 'node_modules/', '.eslintrc.cjs', 'src/shared/ui/shadcn/'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -110,7 +110,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              group: ['../../../*', '@/*/*/*/*'],
+              group: ['../../../*', '@/*/*/*/*/*/*'],
               message: 'Please shorten the path.',
             },
           ],

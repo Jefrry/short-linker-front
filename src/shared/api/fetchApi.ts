@@ -18,7 +18,7 @@ export async function fetchApi<T extends Record<string, any>>({
   const reqHeaders = new Headers();
   let reqBody;
 
-  if (method === 'POST' || method === 'PATCH' || method === 'PUT') {
+  if (method === 'POST' || method === 'PATCH' || method === 'PUT' || method === 'DELETE') {
     reqHeaders.append('Content-Type', 'application/json');
     reqBody = JSON.stringify(body);
   }

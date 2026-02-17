@@ -5,9 +5,9 @@ import * as z from 'zod';
 
 import { useAuth } from '@/entities/user';
 
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Label } from '@/shared/ui/label';
+import { Button } from '@/shared/ui/shadcn/button';
+import { Input } from '@/shared/ui/shadcn/input';
+import { Label } from '@/shared/ui/shadcn/label';
 
 const signupSchema = z.object({
   name: z.string().min(1, 'Name is required'),

@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 
 import { LinkManager } from '@/widgets/linkManager';
-import { LinksTable } from '@/widgets/linksTable';
+import { UserLinksTable } from '@/widgets/linksTable';
 
 import { Link } from '@/shared';
 
@@ -20,7 +20,7 @@ export const DashboardPage = () => {
 
       <h2 className="text-2xl font-bold">My links</h2>
 
-      <LinksTable />
+      <UserLinksTable />
     </div>
   );
 };

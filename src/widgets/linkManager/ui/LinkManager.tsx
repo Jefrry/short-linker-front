@@ -6,7 +6,9 @@ import { LinkHistoryItem } from '@/entities/link/ui';
 import { useNotificationStore } from '@/entities/notification';
 
 import { Link } from '@/shared';
-import { Button, Input } from '@/shared/ui';
+
+import { Button } from '@/shared/ui/shadcn/button';
+import { Input } from '@/shared/ui/shadcn/input';
 
 interface LinkManagerProps {
   showHistory?: boolean;

@@ -10,15 +10,15 @@ import { SignupForm } from '@/features/signupByEmail';
 
 import { useAuth, User, useUser } from '@/entities/user';
 
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui/shadcn/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
+} from '@/shared/ui/shadcn/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/shadcn/tabs';
 
 type AuthTab = 'signin' | 'signup';
 

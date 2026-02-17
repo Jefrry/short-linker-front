@@ -1,1 +1,1 @@
-export * from './ui/LinksTable';
+export * from './ui/UserLinksTable';

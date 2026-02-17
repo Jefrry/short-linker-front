@@ -1,6 +1,6 @@
 import { AlertCircle, AlertTriangle, CheckCircle2, X } from 'lucide-react';
 
-import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/shadcn/alert';
 
 import { NotificationType, useNotificationStore } from '../model';
 

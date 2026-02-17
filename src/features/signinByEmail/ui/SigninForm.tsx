@@ -5,9 +5,9 @@ import * as z from 'zod';
 
 import { useAuth } from '@/entities/user';
 
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Label } from '@/shared/ui/label';
+import { Button } from '@/shared/ui/shadcn/button';
+import { Input } from '@/shared/ui/shadcn/input';
+import { Label } from '@/shared/ui/shadcn/label';
 
 const signinSchema = z.object({
   email: z.email('Invalid email format'),

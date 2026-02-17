@@ -30,4 +30,10 @@ export const userApi = {
       path: 'user/urls',
       method: 'GET',
     }),
+  deleteUserLinks: async (ids: string[]) =>
+    await baseApi({
+      path: 'user/urls',
+      method: 'DELETE',
+      body: ids,
+    }),
 };
