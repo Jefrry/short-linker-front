@@ -1,5 +1,3 @@
-'use client';
-
 import { Link as RouterLink, useParams } from 'react-router';
 
 import { ChevronLeft } from 'lucide-react';
@@ -9,12 +7,14 @@ import { LinkStatistics } from '@/widgets/linkStatistics';
 
 import { useLinkMetricsByDate } from '@/features/getLinkMetricsByDate';
 
-// import { LinkHistoryItem } from '@/entities/link';
+import { LinkHistoryItem, useLink } from '@/entities/link';
+
 import { Button } from '@/shared/ui/shadcn/button';
 
 export const LinkDashboardPage = () => {
   const { id } = useParams<{ id: string }>();
 
+  const { link, isLoading: isLinkLoading } = useLink(id ?? '');
   const { metrics, isLoading, isError, dateRange, setDateRange } = useLinkMetricsByDate(id);
 
   if (!id) return <div>Link ID not found</div>;
@@ -33,15 +33,15 @@ export const LinkDashboardPage = () => {
 
       <div className="grid gap-8 lg:grid-cols-[350px_1fr]">
         <div className="flex flex-col gap-6">
-          {/* <section>
+          <section>
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               Link Information
             </h2>
 
-            {metrics?.url && <LinkHistoryItem data={metrics.url} />}
+            {link && <LinkHistoryItem data={link} />}
 
-            {isLoading && <div className="h-24 w-full animate-pulse rounded-lg bg-muted" />}
-          </section> */}
+            {isLinkLoading && <div className="h-24 w-full animate-pulse rounded-lg bg-muted" />}
+          </section>
 
           <section>
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">

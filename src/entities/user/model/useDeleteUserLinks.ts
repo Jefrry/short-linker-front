@@ -26,8 +26,11 @@ export const useDeleteUserLinks = () => {
         queryClient.setQueryData(['user-links'], context.previousLinks);
       }
     },
-    onSettled: () => {
+    onSettled: (_data, _error, ids) => {
       queryClient.invalidateQueries({ queryKey: ['user-links'] });
+      ids.forEach((id) => {
+        queryClient.invalidateQueries({ queryKey: ['link', id] });
+      });
     },
   });
 };
