@@ -4,9 +4,26 @@ import { DashboardPage } from '@/views/dashboard';
 import { HomePage } from '@/views/home';
 import { LinkDashboardPage } from '@/views/linkDashboard';
 
+import { AppRoutePaths } from '@/shared/config/routes';
+
 interface RouterProviderProps {
   children?: React.ReactNode;
 }
+
+const routeConfig = [
+  {
+    path: AppRoutePaths.home,
+    element: <HomePage />,
+  },
+  {
+    path: AppRoutePaths.dashboard,
+    element: <DashboardPage />,
+  },
+  {
+    path: AppRoutePaths.link_dashboard,
+    element: <LinkDashboardPage />,
+  },
+];
 
 export const RouterProvider = ({ children }: RouterProviderProps) => (
   <BrowserRouter>
@@ -14,11 +31,9 @@ export const RouterProvider = ({ children }: RouterProviderProps) => (
 
     <main className="flex-1">
       <Routes>
-        <Route element={<HomePage />} path="/" />
-
-        <Route element={<DashboardPage />} path="/dashboard" />
-
-        <Route element={<LinkDashboardPage />} path="/dashboard/:id" />
+        {routeConfig.map(({ path, element }) => (
+          <Route element={element} key={path} path={path} />
+        ))}
       </Routes>
     </main>
   </BrowserRouter>

@@ -5,6 +5,8 @@ import { useDeleteLink } from '@/features/deleteLink';
 
 import { useUserLinks } from '@/entities/user';
 
+import { getRouteLinkDashboard } from '@/shared/config/routes';
+
 import { Button } from '@/shared/ui/shadcn/button';
 import { Checkbox } from '@/shared/ui/shadcn/checkbox';
 import {
@@ -114,7 +116,7 @@ export const UserLinksTable = () => {
                   </TableCell>
 
                   <TableCell className="font-medium">
-                    <Link className="hover:underline" to={`/dashboard/${id}`}>
+                    <Link className="hover:underline" to={getRouteLinkDashboard(id)}>
                       {id}
                     </Link>
                   </TableCell>

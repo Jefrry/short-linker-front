@@ -1,4 +1,4 @@
-import { Header } from '@/widgets/ui/Header';
+import { Header } from '@/widgets/header';
 
 import { NotificationContainer } from '@/entities/notification';
 

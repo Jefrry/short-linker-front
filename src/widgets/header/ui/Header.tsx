@@ -10,6 +10,8 @@ import { SignupForm } from '@/features/signupByEmail';
 
 import { useAuth, User, useUser } from '@/entities/user';
 
+import { getRouteDashboard, getRouteHome } from '@/shared/config/routes';
+
 import { Button } from '@/shared/ui/shadcn/button';
 import {
   Dialog,
@@ -35,7 +37,7 @@ export const Header = () => {
   return (
     <header className="bg-card sticky top-0 z-50 border-b">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6">
-        <Link className="flex items-center gap-4" draggable={false} to="/">
+        <Link className="flex items-center gap-4" draggable={false} to={getRouteHome()}>
           <img alt="Short Linker" className="size-10" draggable={false} src="/logo.svg" />
         </Link>
 
@@ -101,7 +103,7 @@ const UserInfo = ({ user }: { user: User }) => {
     <div className="flex items-center gap-4 mr-2">
       <span className="text-sm font-medium">Hello, {user.name}</span>
 
-      <Link to="/dashboard">
+      <Link to={getRouteDashboard()}>
         <Button className="cursor-pointer" size="sm" variant="ghost">
           Dashboard
         </Button>
