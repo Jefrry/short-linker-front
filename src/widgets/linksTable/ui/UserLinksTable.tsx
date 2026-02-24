@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 import { useDeleteLink } from '@/features/deleteLink';
 
@@ -112,7 +113,11 @@ export const UserLinksTable = () => {
                     />
                   </TableCell>
 
-                  <TableCell className="font-medium">{id}</TableCell>
+                  <TableCell className="font-medium">
+                    <Link className="hover:underline" to={`/dashboard/${id}`}>
+                      {id}
+                    </Link>
+                  </TableCell>
 
                   <TableCell className="max-w-md truncate flex flex-col">
                     <a
