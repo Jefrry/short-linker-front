@@ -1,15 +1,18 @@
 export enum AppRoutes {
   HOME = 'home',
   DASHBOARD = 'dashboard',
-  LINK_DASHBOARD = 'link_dashboard',
+  LINK_DASHBOARD = 'linkDashboard',
+  NOT_FOUND = 'notFound',
 }
 
-export const getRouteHome = () => '/';
-export const getRouteDashboard = () => '/dashboard';
+export const ROUTE_HOME = '/';
+export const ROUTE_DASHBOARD = '/dashboard';
 export const getRouteLinkDashboard = (id: string) => `/dashboard/${id}`;
+export const ROUTE_NOT_FOUND = '*';
 
 export const AppRoutePaths: Record<AppRoutes, string> = {
-  [AppRoutes.HOME]: getRouteHome(),
-  [AppRoutes.DASHBOARD]: getRouteDashboard(),
+  [AppRoutes.HOME]: ROUTE_HOME,
+  [AppRoutes.DASHBOARD]: ROUTE_DASHBOARD,
   [AppRoutes.LINK_DASHBOARD]: getRouteLinkDashboard(':id'),
+  [AppRoutes.NOT_FOUND]: ROUTE_NOT_FOUND,
 };

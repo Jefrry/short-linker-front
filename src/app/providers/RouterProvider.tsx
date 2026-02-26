@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { DashboardPage } from '@/views/dashboard';
 import { HomePage } from '@/views/home';
 import { LinkDashboardPage } from '@/views/linkDashboard';
+import { NotFoundPage } from '@/views/notFound';
 
 import { AppRoutePaths } from '@/shared/config/routes';
 
@@ -20,8 +21,12 @@ const routeConfig = [
     element: <DashboardPage />,
   },
   {
-    path: AppRoutePaths.link_dashboard,
+    path: AppRoutePaths.linkDashboard,
     element: <LinkDashboardPage />,
+  },
+  {
+    path: AppRoutePaths.notFound,
+    element: <NotFoundPage />,
   },
 ];
 
